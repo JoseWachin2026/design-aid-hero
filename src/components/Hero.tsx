@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowRight } from 'lucide-react';
+import hover1 from '@/assets/hover-1.png';
+import hover2 from '@/assets/hover-2.png';
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
