@@ -1,73 +1,85 @@
-import { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
-
-function Particles({ count = 3000 }: { count?: number }) {
-  const pointsRef = useRef<THREE.Points>(null);
-
-  const [positions, phases] = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const phases = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 20;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10 - 5;
-      phases[i] = Math.random() * Math.PI * 2;
-    }
-    return [positions, phases];
-  }, [count]);
-
-  const mouse = useRef({ x: 0, y: 0 });
-
-  useFrame((state) => {
-    mouse.current.x = THREE.MathUtils.lerp(mouse.current.x, state.pointer.x * 2, 0.05);
-    mouse.current.y = THREE.MathUtils.lerp(mouse.current.y, state.pointer.y * 2, 0.05);
-
-    if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.05 + mouse.current.x * 0.2;
-      pointsRef.current.rotation.x = mouse.current.y * 0.2;
-
-      const positionsAttr = pointsRef.current.geometry.attributes.position;
-      for (let i = 0; i < count; i++) {
-        const i3 = i * 3;
-        (positionsAttr.array as Float32Array)[i3 + 1] += Math.sin(state.clock.elapsedTime * 0.5 + phases[i]) * 0.002;
-      }
-      positionsAttr.needsUpdate = true;
-    }
-  });
-
-  return (
-    <points ref={pointsRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={positions.length / 3}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.05}
-        color="#48CAE4"
-        transparent
-        opacity={0.6}
-        sizeAttenuation
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
-}
+import { useEffect, useRef } from 'react';
 
 export default function ParticleBackground() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    let animationId: number;
+    const particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
+    const count = 80;
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 0.5,
+        alpha: Math.random() * 0.4 + 0.1,
+      });
+    }
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(72, 202, 228, ${p.alpha})`;
+        ctx.fill();
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(72, 202, 228, ${0.08 * (1 - dist / 120)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      animationId = requestAnimationFrame(animate);
+    };
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', resize);
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[-1] bg-sapphire-900">
-      <div className="absolute inset-0 bg-gradient-radial from-sapphire-800/50 via-sapphire-900/80 to-sapphire-900 z-0" style={{
+      <div className="absolute inset-0" style={{
         background: 'radial-gradient(ellipse at center, hsl(222 30% 18% / 0.5), hsl(220 39% 11% / 0.8), hsl(220 39% 11%))'
       }} />
-      <Canvas camera={{ position: [0, 0, 5], fov: 60 }} className="z-10">
-        <ambientLight intensity={0.5} />
-        <Particles count={4000} />
-      </Canvas>
+      <canvas ref={canvasRef} className="absolute inset-0 z-10" />
     </div>
   );
 }
