@@ -63,16 +63,14 @@ export default function Hero() {
 
           <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 glass-panel group">
             <img
-              src="https://storage.googleapis.com/aistudio-attachments/uploads/112f4585-055c-48b4-824e-7650508b5f92/image.png"
-              alt="Dr. Francisco Faicán Formal"
+              src={hover1}
+              alt="Dr. Francisco Faicán — Bata Médica"
               className="absolute inset-0 w-full h-full object-cover object-[center_15%] scale-110 transition-opacity duration-700 ease-in-out group-hover:opacity-0"
-              referrerPolicy="no-referrer"
             />
             <img
-              src="https://storage.googleapis.com/aistudio-attachments/uploads/2f53d712-4d2c-4f7f-8561-2670d89264f3/image.png"
-              alt="Dr. Francisco Faicán Bata Médica"
+              src={hover2}
+              alt="Dr. Francisco Faicán — Conferencia"
               className="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-700 ease-in-out group-hover:opacity-100"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-sapphire-900/80 via-transparent to-transparent opacity-60" />
 
