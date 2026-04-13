@@ -23,21 +23,23 @@ export default function Navbar() {
   useEffect(() => setOpen(false), [location]);
 
   return (
-    <nav className={cn(
-      "fixed top-0 w-full z-50 transition-all duration-300 px-6 md:px-12",
-      scrolled ? "bg-card/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5"
-    )}>
+    <nav
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300 px-6 md:px-12",
+        scrolled ? "py-3 shadow-md" : "py-5"
+      )}
+      style={{ backgroundColor: '#0D2137' }}
+    >
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex flex-col">
-          <span className="font-serif text-sm md:text-base font-bold text-primary tracking-wide leading-tight">
+          <span className="font-serif text-sm md:text-base font-bold text-white tracking-wide leading-tight">
             Dr. Francisco Faicán
           </span>
-          <span className="text-[9px] md:text-[10px] text-secondary tracking-[0.2em] uppercase">
+          <span className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase" style={{ color: '#C9A84C' }}>
             Imagenología
           </span>
         </Link>
 
-        {/* Desktop */}
         <div className="hidden md:flex items-center gap-6 text-sm">
           {navItems.map(item => (
             <Link
@@ -46,21 +48,18 @@ export default function Navbar() {
               className={cn(
                 "transition-colors font-medium",
                 location.pathname === item.to
-                  ? "text-primary"
-                  : "text-secondary hover:text-primary"
+                  ? "text-white"
+                  : "hover:text-white"
               )}
+              style={{ color: location.pathname === item.to ? '#ffffff' : 'rgba(255,255,255,0.75)' }}
             >
               {item.label}
             </Link>
           ))}
           <Link
             to="/contacto"
-            className={cn(
-              "font-semibold transition-colors",
-              location.pathname === '/contacto'
-                ? "text-primary"
-                : "text-secondary hover:text-primary"
-            )}
+            className="font-semibold transition-colors hover:text-white"
+            style={{ color: location.pathname === '/contacto' ? '#ffffff' : 'rgba(255,255,255,0.75)' }}
           >
             Contáctame
           </Link>
@@ -68,34 +67,42 @@ export default function Navbar() {
             href="https://linktr.ee/drffaican"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors font-semibold text-sm"
+            className="px-5 py-2 rounded-full font-semibold text-sm transition-opacity hover:opacity-90"
+            style={{ backgroundColor: '#C9A84C', color: '#0D2137' }}
           >
             Agendar Cita
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)} className="md:hidden text-primary">
+        <button onClick={() => setOpen(!open)} className="md:hidden text-white">
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-card shadow-lg border-t border-border py-4 px-6 flex flex-col gap-3">
+        <div
+          className="md:hidden absolute top-full left-0 w-full shadow-lg border-t py-4 px-6 flex flex-col gap-3"
+          style={{ backgroundColor: '#0D2137', borderColor: '#1A4A6B' }}
+        >
           {navItems.map(item => (
-            <Link key={item.to} to={item.to} className="text-sm font-medium text-secondary hover:text-primary py-2">
+            <Link
+              key={item.to}
+              to={item.to}
+              className="text-sm font-medium py-2 hover:text-white"
+              style={{ color: 'rgba(255,255,255,0.75)' }}
+            >
               {item.label}
             </Link>
           ))}
-          <Link to="/contacto" className="text-sm font-semibold text-primary py-2">
+          <Link to="/contacto" className="text-sm font-semibold text-white py-2">
             Contáctame
           </Link>
           <a
             href="https://linktr.ee/drffaican"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-center px-5 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm"
+            className="text-center px-5 py-2.5 rounded-full font-semibold text-sm"
+            style={{ backgroundColor: '#C9A84C', color: '#0D2137' }}
           >
             Agendar Cita
           </a>

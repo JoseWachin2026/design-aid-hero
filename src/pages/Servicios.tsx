@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar';
-import { Scan, Waves, Radio, ImageIcon, Bone, Syringe, Droplets, Stethoscope, MapPin, ExternalLink } from 'lucide-react';
+import { Scan, Waves, Radio, Image as ImageIcon, Bone, Syringe, Droplets, Stethoscope } from 'lucide-react';
 
 const diagnostico = [
   { icon: Scan, title: 'Tomografía Computada Multicorte (TAC)', desc: 'Incluye angiotomografía para evaluación vascular de alta precisión.' },
@@ -17,96 +17,113 @@ const intervencionismo = [
 
 function ServiceCard({ icon: Icon, title, desc }: { icon: React.ElementType; title: string; desc: string }) {
   return (
-    <div className="p-6 rounded-xl border border-border bg-card hover:shadow-md transition-shadow">
-      <Icon className="w-6 h-6 text-primary mb-4" strokeWidth={1.2} />
-      <h4 className="font-serif text-lg font-semibold text-foreground mb-2">{title}</h4>
-      <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+    <div
+      className="p-6 rounded-xl bg-white transition-all duration-300 cursor-default group"
+      style={{ border: '1px solid #e2e8f0' }}
+      onMouseEnter={e => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = '#C9A84C';
+        el.style.boxShadow = '0 4px 20px rgba(201,168,76,0.15)';
+      }}
+      onMouseLeave={e => {
+        const el = e.currentTarget as HTMLElement;
+        el.style.borderColor = '#e2e8f0';
+        el.style.boxShadow = 'none';
+      }}
+    >
+      <Icon className="w-6 h-6 mb-4" style={{ color: '#1A4A6B' }} strokeWidth={1.5} />
+      <h4 className="font-serif text-lg font-semibold mb-2" style={{ color: '#0D2137' }}>{title}</h4>
+      <p className="text-sm leading-relaxed" style={{ color: '#5A6B7A' }}>{desc}</p>
     </div>
   );
 }
 
 export default function Servicios() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen" style={{ backgroundColor: '#F4F6F8' }}>
       <Navbar />
-      <div className="pt-28 pb-20">
+
+      {/* Header — navy */}
+      <div style={{ backgroundColor: '#0D2137' }} className="pt-28 pb-16">
+        <div className="section-container text-center">
+          <p
+            className="text-xs font-semibold tracking-[0.25em] uppercase mb-3"
+            style={{ color: '#C9A84C' }}
+          >
+            Especialidad
+          </p>
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Servicios Médicos</h1>
+          <div
+            className="mx-auto my-4"
+            style={{
+              height: '2px',
+              width: '6rem',
+              background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
+            }}
+          />
+          <p className="max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.65)' }}>
+            Tecnología avanzada y precisión diagnóstica para el mejor cuidado de su salud.
+          </p>
+        </div>
+      </div>
+
+      {/* Diagnóstico — ice */}
+      <div style={{ backgroundColor: '#F4F6F8' }} className="py-20">
         <div className="section-container">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <p className="text-xs font-semibold tracking-[0.25em] uppercase text-secondary mb-3">Especialidad</p>
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-4">Servicios Médicos</h1>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              Tecnología avanzada y precisión diagnóstica para el mejor cuidado de su salud.
-            </p>
+          <h2 className="font-serif text-2xl font-bold mb-2" style={{ color: '#0D2137' }}>
+            Estudios de Diagnóstico
+          </h2>
+          <div style={{ width: '3rem', height: '2px', backgroundColor: '#C9A84C', marginBottom: '2rem' }} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {diagnostico.map((s, i) => <ServiceCard key={i} {...s} />)}
           </div>
+        </div>
+      </div>
 
-          {/* Diagnóstico */}
-          <div className="mb-16">
-            <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Estudios de Diagnóstico</h2>
-            <div className="w-12 h-0.5 bg-primary mb-8" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {diagnostico.map((s, i) => <ServiceCard key={i} {...s} />)}
-            </div>
-          </div>
-
-          {/* Intervencionismo */}
-          <div className="mb-20">
-            <h2 className="font-serif text-2xl font-bold text-foreground mb-2">Radiología Intervencionista</h2>
-            <div className="w-12 h-0.5 bg-primary mb-8" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {intervencionismo.map((s, i) => <ServiceCard key={i} {...s} />)}
-            </div>
-          </div>
-
-          {/* IDI Section */}
-          <div className="rounded-2xl border border-border bg-card overflow-hidden">
-            <div className="grid grid-cols-1 md:grid-cols-2">
-              <div className="p-8 md:p-10 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-4">
-                  <MapPin className="w-4 h-4" strokeWidth={1.2} />
-                  Centro de Imagen
-                </div>
-                <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-3">
-                  Instituto de Diagnóstico por Imagen (IDI)
-                </h3>
-                <p className="text-muted-foreground text-sm mb-2">
-                  Inés Salcedo 1-99 entre Agustín Cueva y Federico Proaño.
-                </p>
-                <p className="text-muted-foreground text-sm mb-6">Cuenca, Ecuador</p>
-                <div className="flex flex-wrap gap-3">
-                  <a
-                    href="https://www.idicuenca.com/contactanos"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-full font-semibold text-sm hover:bg-primary/90 transition-colors"
-                  >
-                    Agendar con IDI
-                  </a>
-                  <a
-                    href="https://maps.app.goo.gl/FUDW5PsfV6YKwNaB9"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-full font-medium text-sm text-foreground hover:bg-muted transition-colors"
-                  >
-                    <ExternalLink className="w-4 h-4" strokeWidth={1.2} />
-                    Cómo llegar
-                  </a>
-                </div>
+      {/* Intervencionismo — navy */}
+      <div style={{ backgroundColor: '#0D2137' }} className="py-20">
+        <div className="section-container">
+          <h2 className="font-serif text-2xl font-bold mb-2 text-white">
+            Radiología Intervencionista
+          </h2>
+          <div style={{ width: '3rem', height: '2px', backgroundColor: '#C9A84C', marginBottom: '2rem' }} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {intervencionismo.map((s, i) => (
+              <div
+                key={i}
+                className="p-6 rounded-xl transition-all duration-300 cursor-default"
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = '#1A4A6B';
+                  el.style.borderColor = 'rgba(201,168,76,0.4)';
+                  el.style.boxShadow = '0 4px 20px rgba(0,0,0,0.25)';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.backgroundColor = 'rgba(255,255,255,0.05)';
+                  el.style.borderColor = 'rgba(255,255,255,0.1)';
+                  el.style.boxShadow = 'none';
+                }}
+              >
+                <s.icon className="w-6 h-6 mb-4" style={{ color: '#C9A84C' }} strokeWidth={1.5} />
+                <h4 className="font-serif text-lg font-semibold mb-2 text-white">{s.title}</h4>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>{s.desc}</p>
               </div>
-              <div className="aspect-video md:aspect-auto min-h-[280px]">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.017!2d-79.0057!3d-2.9001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd18355e813c5b%3A0x7c5c18da2c247ab3!2sInstituto+de+Diagn%C3%B3stico+por+Imagen!5e0!3m2!1ses!2sec!4v1700000000000"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Ubicación del IDI"
-                />
-              </div>
-            </div>
+            ))}
           </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ backgroundColor: '#F4F6F8', borderTop: '1px solid #e2e8f0' }} className="py-8">
+        <div className="section-container text-center">
+          <p className="text-xs" style={{ color: '#5A6B7A' }}>
+            © {new Date().getFullYear()} Dr. Francisco Faicán. Todos los derechos reservados.
+          </p>
         </div>
       </div>
     </main>

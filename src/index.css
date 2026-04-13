@@ -6,48 +6,53 @@
 
 @layer base {
   :root {
-    --background: 40 5% 97%;
-    --foreground: 210 35% 17%;
+    /* #F4F6F8 → hsl(210, 14%, 96%) */
+    --background: 210 14% 96%;
+    /* #0D2137 → hsl(210, 65%, 13%) */
+    --foreground: 210 65% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 35% 17%;
+    --card-foreground: 210 65% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 35% 17%;
+    --popover-foreground: 210 65% 13%;
 
-    --primary: 210 35% 17%;
-    --primary-foreground: 40 5% 97%;
+    /* Primary = #0D2137 */
+    --primary: 210 65% 13%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 14% 61%;
-    --secondary-foreground: 210 35% 17%;
+    /* Secondary text = #5A6B7A → hsl(207, 15%, 41%) */
+    --secondary: 207 15% 41%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 15% 95%;
-    --muted-foreground: 210 14% 50%;
+    --muted: 210 14% 93%;
+    --muted-foreground: 207 15% 41%;
 
-    --accent: 210 35% 17%;
-    --accent-foreground: 40 5% 97%;
+    /* Accent = #1A4A6B → hsl(207, 61%, 26%) */
+    --accent: 207 61% 26%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 15% 90%;
-    --input: 210 15% 90%;
-    --ring: 210 35% 17%;
+    --border: 210 14% 88%;
+    --input: 210 14% 88%;
+    --ring: 210 65% 13%;
 
     --radius: 0.75rem;
 
-    --slate-deep: 210 35% 17%;
-    --slate-medium: 210 14% 61%;
-    --off-white: 40 5% 97%;
+    /* Gold: #C9A84C → hsl(40, 57%, 54%) */
+    --gold: 40 57% 54%;
+    --medical-accent: 40 57% 54%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 210 35% 17%;
-    --sidebar-primary: 210 35% 17%;
-    --sidebar-primary-foreground: 40 5% 97%;
-    --sidebar-accent: 210 15% 95%;
-    --sidebar-accent-foreground: 210 35% 17%;
-    --sidebar-border: 210 15% 90%;
-    --sidebar-ring: 210 35% 17%;
+    --sidebar-foreground: 210 65% 13%;
+    --sidebar-primary: 210 65% 13%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 14% 93%;
+    --sidebar-accent-foreground: 210 65% 13%;
+    --sidebar-border: 210 14% 88%;
+    --sidebar-ring: 210 65% 13%;
   }
 }
 
@@ -72,12 +77,27 @@
     @apply bg-muted;
   }
   ::-webkit-scrollbar-thumb {
-    @apply bg-secondary rounded-full;
+    background-color: #1A4A6B;
+    border-radius: 9999px;
   }
 }
 
 @layer components {
   .section-container {
     @apply max-w-5xl mx-auto px-6 md:px-12;
+  }
+
+  .gold-separator {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+  }
+
+  .navy-section {
+    background-color: #0D2137;
+    color: #ffffff;
+  }
+
+  .ice-section {
+    background-color: #F4F6F8;
   }
 }
