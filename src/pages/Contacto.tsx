@@ -17,32 +17,19 @@ export default function Contacto() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             {/* Contact info */}
-            <div className="space-y-6">
+            <div className="space-y-5">
               <a
                 href="https://wa.me/593998254115"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-primary" strokeWidth={1.2} />
                 </div>
                 <div>
                   <p className="font-semibold text-foreground text-sm">WhatsApp</p>
                   <p className="text-muted-foreground text-sm">+593 99 825 4115</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:franciscofaican@gmail.com"
-                className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
-              >
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-primary" strokeWidth={1.5} />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground text-sm">Correo electrónico</p>
-                  <p className="text-muted-foreground text-sm">franciscofaican@gmail.com</p>
                 </div>
               </a>
 
@@ -52,8 +39,8 @@ export default function Contacto() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 p-5 rounded-xl border border-border bg-card hover:shadow-md transition-shadow"
               >
-                <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                  <Instagram className="w-5 h-5 text-primary" strokeWidth={1.5} />
+                <div className="w-11 h-11 rounded-full bg-muted flex items-center justify-center">
+                  <Instagram className="w-5 h-5 text-primary" strokeWidth={1.2} />
                 </div>
                 <div>
                   <p className="font-semibold text-foreground text-sm">Instagram</p>
@@ -87,7 +74,7 @@ export default function Contacto() {
               </div>
 
               <div className="flex items-start gap-3 p-4">
-                <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.5} />
+                <MapPin className="w-5 h-5 text-primary mt-0.5 shrink-0" strokeWidth={1.2} />
                 <div>
                   <p className="text-sm text-foreground font-medium">Cuenca, Ecuador</p>
                   <p className="text-sm text-muted-foreground">Inés Salcedo 1-99 entre Agustín Cueva y Federico Proaño</p>
@@ -100,7 +87,7 @@ export default function Contacto() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-full font-medium text-sm text-foreground hover:bg-muted transition-colors"
               >
-                <ExternalLink className="w-4 h-4" strokeWidth={1.5} />
+                <ExternalLink className="w-4 h-4" strokeWidth={1.2} />
                 Ver en Google Maps
               </a>
             </div>
@@ -123,7 +110,7 @@ export default function Contacto() {
         className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-lg hover:bg-primary/90 transition-colors"
         aria-label="WhatsApp"
       >
-        <Phone className="w-6 h-6" strokeWidth={1.5} />
+        <Phone className="w-6 h-6" strokeWidth={1.2} />
       </a>
     </main>
   );
