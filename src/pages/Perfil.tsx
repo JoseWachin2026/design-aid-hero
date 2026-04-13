@@ -1,13 +1,13 @@
 import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
+import About from '@/components/About';
 
-const Index = () => {
+export default function Perfil() {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
+      <div className="pt-20">
+        <About />
+      </div>
     </main>
   );
-};
-
-export default Index;
+}

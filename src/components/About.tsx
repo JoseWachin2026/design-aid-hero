@@ -60,16 +60,16 @@ const congresses = [
 function SectionTitle({ icon: Icon, children }: { icon: React.ElementType; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 mb-8">
-      <div className="w-10 h-10 rounded-lg bg-[#0A1628] flex items-center justify-center">
-        <Icon className="w-5 h-5 text-medical-accent" />
+      <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+        <Icon className="w-5 h-5 text-primary-foreground" strokeWidth={1.5} />
       </div>
-      <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#0A1628]">{children}</h3>
+      <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground">{children}</h3>
     </div>
   );
 }
 
 function Divider() {
-  return <hr className="border-t border-gray-200 my-12 md:my-16" />;
+  return <hr className="border-t border-border my-12 md:my-16" />;
 }
 
 export default function About() {
@@ -91,18 +91,18 @@ export default function About() {
   }, []);
 
   return (
-    <section id="perfil" ref={sectionRef} className="relative z-10 bg-white py-20 md:py-28">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section ref={sectionRef} className="bg-card py-20 md:py-28">
+      <div className="section-container">
 
         {/* Header */}
         <div className="profile-block text-center mb-16">
-          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-medical-accent mb-4">
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-secondary mb-4">
             Perfil Profesional
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0A1628] mb-2">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-2">
             Dr. José Francisco Faicán Benenaula
           </h2>
-          <p className="text-lg text-gray-500 mt-4 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
             Médico Radiólogo · Especialista en Imágenes de Tórax y Abdomen
           </p>
         </div>
@@ -110,10 +110,10 @@ export default function About() {
         {/* BLOQUE 1 — Biografía */}
         <div className="profile-block">
           <SectionTitle icon={Stethoscope}>Biografía</SectionTitle>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             El Dr. José Francisco Faicán Benenaula es un médico radiólogo especialista en imágenes de tórax y abdomen, reconocido como figura clave en el diagnóstico de enfermedades pulmonares complejas en Ecuador con proyección internacional. Su carrera combina una sólida formación académica, experiencia clínica de alto nivel y un compromiso activo con la docencia y la investigación científica.
           </p>
-          <p className="text-gray-600 text-lg leading-relaxed mt-4">
+          <p className="text-muted-foreground text-lg leading-relaxed mt-4">
             Becario del Ministerio de Salud Pública del Ecuador para especialización en Cuba, su trayectoria refleja un compromiso constante con la excelencia médica y la innovación diagnóstica.
           </p>
         </div>
@@ -127,12 +127,12 @@ export default function About() {
             {formation.map((item, i) => (
               <div key={i} className="flex gap-4">
                 <div className="w-28 shrink-0 text-right">
-                  <span className="text-sm font-semibold text-[#0A1628] tracking-wide">{item.year}</span>
+                  <span className="text-sm font-semibold text-foreground tracking-wide">{item.year}</span>
                 </div>
-                <div className="relative pl-6 border-l-2 border-gray-200 pb-2">
-                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-medical-accent" />
-                  <p className="font-semibold text-[#0A1628]">{item.title}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{item.place}</p>
+                <div className="relative pl-6 border-l-2 border-border pb-2">
+                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-primary" />
+                  <p className="font-semibold text-foreground">{item.title}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{item.place}</p>
                 </div>
               </div>
             ))}
@@ -148,12 +148,12 @@ export default function About() {
             {trajectory.map((item, i) => (
               <div key={i} className="flex gap-4">
                 <div className="w-28 shrink-0 text-right">
-                  <span className="text-sm font-semibold text-[#0A1628] tracking-wide">{item.year}</span>
+                  <span className="text-sm font-semibold text-foreground tracking-wide">{item.year}</span>
                 </div>
-                <div className="relative pl-6 border-l-2 border-gray-200 pb-2">
-                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-medical-accent" />
-                  <p className="font-semibold text-[#0A1628]">{item.role}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{item.place}</p>
+                <div className="relative pl-6 border-l-2 border-border pb-2">
+                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-primary" />
+                  <p className="font-semibold text-foreground">{item.role}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{item.place}</p>
                 </div>
               </div>
             ))}
@@ -167,9 +167,9 @@ export default function About() {
           <SectionTitle icon={Stethoscope}>Áreas de Especialización</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {specialties.map((s, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <div className="mt-0.5 w-2 h-2 rounded-full bg-medical-accent shrink-0" />
-                <p className="text-gray-700 text-sm leading-relaxed">{s}</p>
+              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-muted border border-border">
+                <div className="mt-0.5 w-2 h-2 rounded-full bg-primary shrink-0" />
+                <p className="text-foreground text-sm leading-relaxed">{s}</p>
               </div>
             ))}
           </div>
@@ -184,7 +184,7 @@ export default function About() {
             {affiliations.map((a, i) => (
               <span
                 key={i}
-                className="inline-block px-4 py-2 rounded-full bg-[#0A1628] text-white text-sm font-medium"
+                className="inline-block px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium"
               >
                 {a}
               </span>
@@ -200,8 +200,8 @@ export default function About() {
           <div className="space-y-5">
             {publications.map((p, i) => (
               <div key={i} className="pl-5 border-l-4 border-medical-accent">
-                <p className="font-semibold text-[#0A1628]">{p.title}</p>
-                <p className="text-gray-500 text-sm italic mt-1">{p.journal}</p>
+                <p className="font-semibold text-foreground">{p.title}</p>
+                <p className="text-muted-foreground text-sm italic mt-1">{p.journal}</p>
               </div>
             ))}
           </div>
@@ -215,10 +215,10 @@ export default function About() {
           <div className="space-y-5">
             {congresses.map((c, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-medical-accent shrink-0" />
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-primary shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#0A1628]">{c.event}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{c.topic}</p>
+                  <p className="font-semibold text-foreground">{c.event}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{c.topic}</p>
                 </div>
               </div>
             ))}
