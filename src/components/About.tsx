@@ -60,10 +60,10 @@ const congresses = [
 function SectionTitle({ icon: Icon, children }: { icon: React.ElementType; children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3 mb-8">
-      <div className="w-10 h-10 rounded-lg bg-[#0A1628] flex items-center justify-center">
-        <Icon className="w-5 h-5 text-medical-accent" />
+      <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+        <Icon className="w-5 h-5 text-primary-foreground" strokeWidth={1.5} />
       </div>
-      <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#0A1628]">{children}</h3>
+      <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground">{children}</h3>
     </div>
   );
 }
@@ -91,18 +91,18 @@ export default function About() {
   }, []);
 
   return (
-    <section id="perfil" ref={sectionRef} className="relative z-10 bg-white py-20 md:py-28">
-      <div className="max-w-4xl mx-auto px-6 md:px-12">
+    <section ref={sectionRef} className="bg-card py-20 md:py-28">
+      <div className="section-container">
 
         {/* Header */}
         <div className="profile-block text-center mb-16">
-          <p className="text-sm font-semibold tracking-[0.25em] uppercase text-medical-accent mb-4">
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-secondary mb-4">
             Perfil Profesional
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#0A1628] mb-2">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-2">
             Dr. José Francisco Faicán Benenaula
           </h2>
-          <p className="text-lg text-gray-500 mt-4 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mt-4 max-w-2xl mx-auto">
             Médico Radiólogo · Especialista en Imágenes de Tórax y Abdomen
           </p>
         </div>
@@ -110,10 +110,10 @@ export default function About() {
         {/* BLOQUE 1 — Biografía */}
         <div className="profile-block">
           <SectionTitle icon={Stethoscope}>Biografía</SectionTitle>
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-muted-foreground text-lg leading-relaxed">
             El Dr. José Francisco Faicán Benenaula es un médico radiólogo especialista en imágenes de tórax y abdomen, reconocido como figura clave en el diagnóstico de enfermedades pulmonares complejas en Ecuador con proyección internacional. Su carrera combina una sólida formación académica, experiencia clínica de alto nivel y un compromiso activo con la docencia y la investigación científica.
           </p>
-          <p className="text-gray-600 text-lg leading-relaxed mt-4">
+          <p className="text-muted-foreground text-lg leading-relaxed mt-4">
             Becario del Ministerio de Salud Pública del Ecuador para especialización en Cuba, su trayectoria refleja un compromiso constante con la excelencia médica y la innovación diagnóstica.
           </p>
         </div>
