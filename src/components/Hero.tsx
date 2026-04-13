@@ -30,7 +30,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors"
           >
             Agendar Cita
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
           </a>
         </div>
 

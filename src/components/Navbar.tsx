@@ -25,14 +25,14 @@ export default function Navbar() {
   return (
     <nav className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300 px-6 md:px-12",
-      scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5"
+      scrolled ? "bg-card/95 backdrop-blur-sm shadow-sm py-3" : "bg-transparent py-5"
     )}>
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <Link to="/" className="flex flex-col">
-          <span className="font-serif text-base md:text-lg font-bold text-primary tracking-wide leading-tight">
+          <span className="font-serif text-sm md:text-base font-bold text-primary tracking-wide leading-tight">
             Dr. Francisco Faicán
           </span>
-          <span className="text-[10px] md:text-xs text-secondary tracking-[0.2em] uppercase">
+          <span className="text-[9px] md:text-[10px] text-secondary tracking-[0.2em] uppercase">
             Imagenología
           </span>
         </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t border-border py-4 px-6 flex flex-col gap-3">
+        <div className="md:hidden absolute top-full left-0 w-full bg-card shadow-lg border-t border-border py-4 px-6 flex flex-col gap-3">
           {navItems.map(item => (
             <Link key={item.to} to={item.to} className="text-sm font-medium text-secondary hover:text-primary py-2">
               {item.label}
