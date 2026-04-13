@@ -69,7 +69,7 @@ function SectionTitle({ icon: Icon, children }: { icon: React.ElementType; child
 }
 
 function Divider() {
-  return <hr className="border-t border-gray-200 my-12 md:my-16" />;
+  return <hr className="border-t border-border my-12 md:my-16" />;
 }
 
 export default function About() {
@@ -127,12 +127,12 @@ export default function About() {
             {formation.map((item, i) => (
               <div key={i} className="flex gap-4">
                 <div className="w-28 shrink-0 text-right">
-                  <span className="text-sm font-semibold text-[#0A1628] tracking-wide">{item.year}</span>
+                  <span className="text-sm font-semibold text-foreground tracking-wide">{item.year}</span>
                 </div>
-                <div className="relative pl-6 border-l-2 border-gray-200 pb-2">
-                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-medical-accent" />
-                  <p className="font-semibold text-[#0A1628]">{item.title}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{item.place}</p>
+                <div className="relative pl-6 border-l-2 border-border pb-2">
+                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-primary" />
+                  <p className="font-semibold text-foreground">{item.title}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{item.place}</p>
                 </div>
               </div>
             ))}
@@ -148,12 +148,12 @@ export default function About() {
             {trajectory.map((item, i) => (
               <div key={i} className="flex gap-4">
                 <div className="w-28 shrink-0 text-right">
-                  <span className="text-sm font-semibold text-[#0A1628] tracking-wide">{item.year}</span>
+                  <span className="text-sm font-semibold text-foreground tracking-wide">{item.year}</span>
                 </div>
-                <div className="relative pl-6 border-l-2 border-gray-200 pb-2">
-                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-medical-accent" />
-                  <p className="font-semibold text-[#0A1628]">{item.role}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{item.place}</p>
+                <div className="relative pl-6 border-l-2 border-border pb-2">
+                  <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-primary" />
+                  <p className="font-semibold text-foreground">{item.role}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{item.place}</p>
                 </div>
               </div>
             ))}
@@ -167,9 +167,9 @@ export default function About() {
           <SectionTitle icon={Stethoscope}>Áreas de Especialización</SectionTitle>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {specialties.map((s, i) => (
-              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
-                <div className="mt-0.5 w-2 h-2 rounded-full bg-medical-accent shrink-0" />
-                <p className="text-gray-700 text-sm leading-relaxed">{s}</p>
+              <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-muted border border-border">
+                <div className="mt-0.5 w-2 h-2 rounded-full bg-primary shrink-0" />
+                <p className="text-foreground text-sm leading-relaxed">{s}</p>
               </div>
             ))}
           </div>
@@ -184,7 +184,7 @@ export default function About() {
             {affiliations.map((a, i) => (
               <span
                 key={i}
-                className="inline-block px-4 py-2 rounded-full bg-[#0A1628] text-white text-sm font-medium"
+                className="inline-block px-4 py-2 rounded-full bg-primary text-primary-foreground text-sm font-medium"
               >
                 {a}
               </span>
@@ -200,8 +200,8 @@ export default function About() {
           <div className="space-y-5">
             {publications.map((p, i) => (
               <div key={i} className="pl-5 border-l-4 border-medical-accent">
-                <p className="font-semibold text-[#0A1628]">{p.title}</p>
-                <p className="text-gray-500 text-sm italic mt-1">{p.journal}</p>
+                <p className="font-semibold text-foreground">{p.title}</p>
+                <p className="text-muted-foreground text-sm italic mt-1">{p.journal}</p>
               </div>
             ))}
           </div>
@@ -215,10 +215,10 @@ export default function About() {
           <div className="space-y-5">
             {congresses.map((c, i) => (
               <div key={i} className="flex items-start gap-3">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-medical-accent shrink-0" />
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-primary shrink-0" />
                 <div>
-                  <p className="font-semibold text-[#0A1628]">{c.event}</p>
-                  <p className="text-gray-500 text-sm mt-0.5">{c.topic}</p>
+                  <p className="font-semibold text-foreground">{c.event}</p>
+                  <p className="text-muted-foreground text-sm mt-0.5">{c.topic}</p>
                 </div>
               </div>
             ))}
