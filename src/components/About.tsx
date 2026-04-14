@@ -9,6 +9,9 @@ import {
   BookOpen,
   Mic,
 } from 'lucide-react';
+import perfilPantallas from '@/assets/perfil-pantallas.jpg';
+import perfilMedico from '@/assets/perfil-medico.jpeg';
+import congresoMdp from '@/assets/congreso-mar-del-plata.jpeg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -57,26 +60,11 @@ const congresses = [
   { event: 'Congresos Internacionales Universidad de Cuenca', topic: '2017–2019' },
 ];
 
-function SectionTitle({
-  icon: Icon,
-  children,
-  light = false,
-}: {
-  icon: React.ElementType;
-  children: React.ReactNode;
-  light?: boolean;
-}) {
+function SectionTitle({ icon: Icon, children, light = false }: { icon: React.ElementType; children: React.ReactNode; light?: boolean }) {
   return (
     <div className="flex items-center gap-3 mb-8">
-      <Icon
-        className="w-5 h-5 shrink-0"
-        style={{ color: light ? '#C9A84C' : '#1A4A6B' }}
-        strokeWidth={1.5}
-      />
-      <h3
-        className="font-serif text-2xl md:text-3xl font-bold"
-        style={{ color: light ? '#ffffff' : '#0D2137' }}
-      >
+      <Icon className={`w-5 h-5 shrink-0 ${light ? 'text-gold' : 'text-pastel'}`} strokeWidth={1.5} />
+      <h3 className={`font-serif text-2xl md:text-3xl font-bold ${light ? 'text-white' : 'text-text-primary'}`}>
         {children}
       </h3>
     </div>
@@ -84,17 +72,21 @@ function SectionTitle({
 }
 
 function GoldDivider() {
-  return (
-    <div className="my-12 md:my-16">
-      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)' }} />
-    </div>
-  );
+  return <div className="my-12 md:my-16 gold-separator" />;
 }
 
 function NavyDivider() {
   return (
     <div className="my-14">
-      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent)' }} />
+      <div style={{ height: '1px', background: 'linear-gradient(90deg, transparent, hsl(var(--gold) / 0.5), transparent)' }} />
+    </div>
+  );
+}
+
+function ProfileImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="service-card-img aspect-[16/10] rounded-xl overflow-hidden">
+      <img src={src} alt={alt} className="w-full h-full object-cover" loading="lazy" />
     </div>
   );
 }
@@ -119,122 +111,101 @@ export default function About() {
 
   return (
     <section ref={sectionRef}>
-
       {/* Header — ice */}
-      <div style={{ backgroundColor: '#F4F6F8' }} className="py-16 md:py-20">
+      <div className="bg-ice py-16 md:py-20">
         <div className="section-container">
           <div className="profile-block text-center">
-            <p
-              className="text-xs font-semibold tracking-[0.25em] uppercase mb-4"
-              style={{ color: '#1A4A6B' }}
-            >
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-4 text-pastel">
               Perfil Profesional
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-2" style={{ color: '#0D2137' }}>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-2 text-text-primary">
               Dr. José Francisco Faicán Benenaula
             </h2>
-            <div
-              className="mx-auto mt-4 mb-6"
-              style={{
-                height: '2px',
-                width: '6rem',
-                background: 'linear-gradient(90deg, transparent, #C9A84C, transparent)',
-              }}
-            />
-            <p className="text-lg mt-4 max-w-2xl mx-auto" style={{ color: '#5A6B7A' }}>
+            <div className="mx-auto mt-4 mb-6 gold-separator" style={{ width: '6rem' }} />
+            <p className="text-lg mt-4 max-w-2xl mx-auto text-text-secondary">
               Médico Radiólogo · Especialista en Imágenes de Tórax y Abdomen
             </p>
           </div>
         </div>
       </div>
 
-      {/* Biografía — ice */}
-      <div style={{ backgroundColor: '#F4F6F8' }} className="pb-20">
+      {/* Biografía — warm white */}
+      <div className="bg-warm-white pb-20 pt-16">
         <div className="section-container">
-          <div className="profile-block">
-            <SectionTitle icon={Stethoscope}>Biografía</SectionTitle>
-            <p className="text-lg leading-relaxed" style={{ color: '#5A6B7A' }}>
-              El Dr. José Francisco Faicán Benenaula es un médico radiólogo especialista en imágenes de tórax y abdomen, reconocido como figura clave en el diagnóstico de enfermedades pulmonares complejas en Ecuador con proyección internacional. Su carrera combina una sólida formación académica, experiencia clínica de alto nivel y un compromiso activo con la docencia y la investigación científica.
-            </p>
-            <p className="text-lg leading-relaxed mt-4" style={{ color: '#5A6B7A' }}>
-              Becario del Ministerio de Salud Pública del Ecuador para especialización en Cuba, su trayectoria refleja un compromiso constante con la excelencia médica y la innovación diagnóstica.
-            </p>
+          <div className="profile-block grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <SectionTitle icon={Stethoscope}>Biografía</SectionTitle>
+              <p className="text-base leading-relaxed text-text-secondary">
+                El Dr. José Francisco Faicán Benenaula es un médico radiólogo especialista en imágenes de tórax y abdomen, reconocido como figura clave en el diagnóstico de enfermedades pulmonares complejas en Ecuador con proyección internacional. Su carrera combina una sólida formación académica, experiencia clínica de alto nivel y un compromiso activo con la docencia y la investigación científica.
+              </p>
+              <p className="text-base leading-relaxed mt-4 text-text-secondary">
+                Becario del Ministerio de Salud Pública del Ecuador para especialización en Cuba, su trayectoria refleja un compromiso constante con la excelencia médica y la innovación diagnóstica.
+              </p>
+            </div>
+            <ProfileImage src={perfilPantallas} alt="Dr. Faicán frente a pantallas de diagnóstico" />
           </div>
         </div>
       </div>
 
-      {/* Formación + Trayectoria — navy */}
-      <div style={{ backgroundColor: '#0D2137' }} className="py-20 md:py-28">
+      {/* Formación + Trayectoria — serene */}
+      <div className="bg-serene py-20 md:py-28">
         <div className="section-container">
-          <div className="profile-block">
-            <SectionTitle icon={GraduationCap} light>Formación Académica</SectionTitle>
-            <div className="space-y-6">
-              {formation.map((item, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-28 shrink-0 text-right">
-                    <span className="text-sm font-semibold text-white tracking-wide">{item.year}</span>
+          <div className="profile-block grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <SectionTitle icon={GraduationCap} light>Formación Académica</SectionTitle>
+              <div className="space-y-6">
+                {formation.map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-28 shrink-0 text-right">
+                      <span className="text-sm font-semibold text-white tracking-wide">{item.year}</span>
+                    </div>
+                    <div className="relative pl-6 pb-2" style={{ borderLeft: '2px solid rgba(255,255,255,0.15)' }}>
+                      <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-gold" />
+                      <p className="font-semibold text-white">{item.title}</p>
+                      <p className="text-sm mt-0.5 text-white/60">{item.place}</p>
+                    </div>
                   </div>
-                  <div
-                    className="relative pl-6 pb-2"
-                    style={{ borderLeft: '2px solid rgba(255,255,255,0.15)' }}
-                  >
-                    <div
-                      className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full"
-                      style={{ backgroundColor: '#C9A84C' }}
-                    />
-                    <p className="font-semibold text-white">{item.title}</p>
-                    <p className="text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>{item.place}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            <ProfileImage src={congresoMdp} alt="Dr. Faicán en congreso Mar del Plata, Argentina" />
           </div>
 
           <NavyDivider />
 
-          <div className="profile-block">
-            <SectionTitle icon={Briefcase} light>Trayectoria Profesional</SectionTitle>
-            <div className="space-y-6">
-              {trajectory.map((item, i) => (
-                <div key={i} className="flex gap-4">
-                  <div className="w-28 shrink-0 text-right">
-                    <span className="text-sm font-semibold text-white tracking-wide">{item.year}</span>
+          <div className="profile-block grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <ProfileImage src={perfilMedico} alt="Dr. Faicán en procedimiento médico" />
+            <div>
+              <SectionTitle icon={Briefcase} light>Trayectoria Profesional</SectionTitle>
+              <div className="space-y-6">
+                {trajectory.map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <div className="w-28 shrink-0 text-right">
+                      <span className="text-sm font-semibold text-white tracking-wide">{item.year}</span>
+                    </div>
+                    <div className="relative pl-6 pb-2" style={{ borderLeft: '2px solid rgba(255,255,255,0.15)' }}>
+                      <div className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full bg-gold" />
+                      <p className="font-semibold text-white">{item.role}</p>
+                      <p className="text-sm mt-0.5 text-white/60">{item.place}</p>
+                    </div>
                   </div>
-                  <div
-                    className="relative pl-6 pb-2"
-                    style={{ borderLeft: '2px solid rgba(255,255,255,0.15)' }}
-                  >
-                    <div
-                      className="absolute -left-[7px] top-1.5 w-3 h-3 rounded-full"
-                      style={{ backgroundColor: '#C9A84C' }}
-                    />
-                    <p className="font-semibold text-white">{item.role}</p>
-                    <p className="text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.6)' }}>{item.place}</p>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Especialidades + Afiliaciones — ice */}
-      <div style={{ backgroundColor: '#F4F6F8' }} className="py-20 md:py-24">
+      <div className="bg-ice py-20 md:py-24">
         <div className="section-container">
           <div className="profile-block">
             <SectionTitle icon={Stethoscope}>Áreas de Especialización</SectionTitle>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {specialties.map((s, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-4 rounded-xl bg-white"
-                  style={{ border: '1px solid #e2e8f0' }}
-                >
-                  <div
-                    className="mt-0.5 w-2 h-2 rounded-full shrink-0"
-                    style={{ backgroundColor: '#1A4A6B' }}
-                  />
-                  <p className="text-sm leading-relaxed" style={{ color: '#0D2137' }}>{s}</p>
+                <div key={i} className="flex items-start gap-3 p-4 rounded-xl bg-white border border-pastel/20">
+                  <div className="mt-0.5 w-2 h-2 rounded-full shrink-0 bg-pastel" />
+                  <p className="text-sm leading-relaxed text-text-primary">{s}</p>
                 </div>
               ))}
             </div>
@@ -246,11 +217,7 @@ export default function About() {
             <SectionTitle icon={Globe}>Afiliaciones Internacionales</SectionTitle>
             <div className="flex flex-wrap gap-3">
               {affiliations.map((a, i) => (
-                <span
-                  key={i}
-                  className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-white"
-                  style={{ border: '1.5px solid #1A4A6B', color: '#1A4A6B' }}
-                >
+                <span key={i} className="inline-block px-4 py-2 rounded-full text-sm font-medium bg-ice border border-pastel/40 text-text-primary">
                   {a}
                 </span>
               ))}
@@ -259,20 +226,16 @@ export default function About() {
         </div>
       </div>
 
-      {/* Publicaciones + Congresos — navy */}
-      <div style={{ backgroundColor: '#0D2137' }} className="py-20 md:py-24">
+      {/* Publicaciones + Congresos — serene */}
+      <div className="bg-serene py-20 md:py-24">
         <div className="section-container">
           <div className="profile-block">
             <SectionTitle icon={BookOpen} light>Publicaciones Destacadas</SectionTitle>
             <div className="space-y-5">
               {publications.map((p, i) => (
-                <div
-                  key={i}
-                  className="pl-5"
-                  style={{ borderLeft: '3px solid #C9A84C' }}
-                >
+                <div key={i} className="pl-5 border-l-[3px] border-gold">
                   <p className="font-semibold text-white">{p.title}</p>
-                  <p className="text-sm italic mt-1" style={{ color: 'rgba(255,255,255,0.55)' }}>{p.journal}</p>
+                  <p className="text-sm italic mt-1 text-white/55">{p.journal}</p>
                 </div>
               ))}
             </div>
@@ -285,13 +248,10 @@ export default function About() {
             <div className="space-y-5">
               {congresses.map((c, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <div
-                    className="mt-1.5 w-2 h-2 rounded-full shrink-0"
-                    style={{ backgroundColor: '#C9A84C' }}
-                  />
+                  <div className="mt-1.5 w-2 h-2 rounded-full shrink-0 bg-gold" />
                   <div>
                     <p className="font-semibold text-white">{c.event}</p>
-                    <p className="text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.55)' }}>{c.topic}</p>
+                    <p className="text-sm mt-0.5 text-white/55">{c.topic}</p>
                   </div>
                 </div>
               ))}
@@ -299,7 +259,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
