@@ -6,53 +6,66 @@
 
 @layer base {
   :root {
-    /* #F4F6F8 → hsl(210, 14%, 96%) */
-    --background: 210 14% 96%;
-    /* #0D2137 → hsl(210, 65%, 13%) */
-    --foreground: 210 65% 13%;
+    /* #EEF2F7 → hsl(214, 32%, 95%) */
+    --background: 214 32% 95%;
+    /* #1E3A4F → hsl(204, 45%, 21%) */
+    --foreground: 204 45% 21%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 65% 13%;
+    --card-foreground: 204 45% 21%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 65% 13%;
+    --popover-foreground: 204 45% 21%;
 
-    /* Primary = #0D2137 */
-    --primary: 210 65% 13%;
+    /* Primary = #2C5F8A → hsl(207, 52%, 36%) */
+    --primary: 207 52% 36%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary text = #5A6B7A → hsl(207, 15%, 41%) */
-    --secondary: 207 15% 41%;
+    /* Secondary = #6B8A9E → hsl(204, 20%, 52%) */
+    --secondary: 204 20% 52%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 14% 93%;
-    --muted-foreground: 207 15% 41%;
+    --muted: 214 20% 93%;
+    --muted-foreground: 204 20% 52%;
 
-    /* Accent = #1A4A6B → hsl(207, 61%, 26%) */
-    --accent: 207 61% 26%;
+    /* Accent = #5B9EC9 → hsl(205, 48%, 57%) */
+    --accent: 205 48% 57%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 210 14% 88%;
-    --input: 210 14% 88%;
-    --ring: 210 65% 13%;
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 207 52% 36%;
 
     --radius: 0.75rem;
 
-    /* Gold: #C9A84C → hsl(40, 57%, 54%) */
-    --gold: 40 57% 54%;
-    --medical-accent: 40 57% 54%;
+    /* Gold sand: #D4AF7A → hsl(34, 50%, 65%) */
+    --gold: 34 50% 65%;
+    --medical-accent: 34 50% 65%;
+
+    /* Ice blue: #EEF2F7 */
+    --ice: 214 32% 95%;
+    /* Warm white: #F9FAFB */
+    --warm-white: 210 20% 98%;
+    /* Blue serene: #2C5F8A */
+    --serene: 207 52% 36%;
+    /* Pastel blue: #5B9EC9 */
+    --pastel: 205 48% 57%;
+    /* Text primary: #1E3A4F */
+    --text-primary: 204 45% 21%;
+    /* Text secondary: #6B8A9E */
+    --text-secondary: 204 20% 52%;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 210 65% 13%;
-    --sidebar-primary: 210 65% 13%;
+    --sidebar-foreground: 204 45% 21%;
+    --sidebar-primary: 207 52% 36%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 14% 93%;
-    --sidebar-accent-foreground: 210 65% 13%;
-    --sidebar-border: 210 14% 88%;
-    --sidebar-ring: 210 65% 13%;
+    --sidebar-accent: 214 20% 93%;
+    --sidebar-accent-foreground: 204 45% 21%;
+    --sidebar-border: 214 20% 88%;
+    --sidebar-ring: 207 52% 36%;
   }
 }
 
@@ -67,17 +80,17 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', ui-serif, Georgia, serif;
-    @apply text-foreground;
+    color: hsl(var(--text-primary));
   }
 
   ::-webkit-scrollbar {
     width: 6px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-muted;
+    background: hsl(var(--ice));
   }
   ::-webkit-scrollbar-thumb {
-    background-color: #1A4A6B;
+    background-color: hsl(var(--serene));
     border-radius: 9999px;
   }
 }
@@ -89,15 +102,35 @@
 
   .gold-separator {
     height: 2px;
-    background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+    background: linear-gradient(90deg, transparent, hsl(var(--gold)), transparent);
   }
 
-  .navy-section {
-    background-color: #0D2137;
+  .serene-section {
+    background-color: hsl(var(--serene));
     color: #ffffff;
   }
 
   .ice-section {
-    background-color: #F4F6F8;
+    background-color: hsl(var(--ice));
+  }
+
+  .service-card-img {
+    @apply relative overflow-hidden rounded-xl;
+    box-shadow: 0 8px 32px rgba(44,95,138,0.12);
+  }
+
+  .service-card-img img {
+    @apply w-full h-full object-cover transition-transform duration-[400ms];
+  }
+
+  .service-card-img:hover img {
+    transform: scale(1.05);
+  }
+
+  .service-card-img::after {
+    content: '';
+    @apply absolute inset-0;
+    background: rgba(44,95,138,0.20);
+    border-radius: inherit;
   }
 }
