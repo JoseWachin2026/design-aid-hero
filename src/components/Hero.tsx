@@ -34,31 +34,26 @@ const quickCards = [
 export default function Hero() {
   return (
     <section className="relative flex flex-col">
+      {/* Main hero */}
       <div
         className="relative min-h-screen flex items-center pt-20"
-        style={{ background: 'linear-gradient(135deg, #0D2137 0%, #1A4A6B 100%)' }}
+        style={{ background: 'linear-gradient(135deg, #EEF2F7 0%, #D6E8F5 100%)' }}
       >
         <div className="max-w-6xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col items-start">
-            <p
-              className="text-xs font-semibold tracking-[0.25em] uppercase mb-4"
-              style={{ color: '#C9A84C' }}
-            >
+            <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-4 text-gold">
               Especialista en Diagnóstico por Imagen
             </p>
 
-            <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight mb-4 text-white">
+            <h1 className="font-serif text-4xl md:text-6xl font-bold leading-tight mb-4 text-text-primary">
               Dr. Francisco<br />Faicán
             </h1>
 
-            <p className="text-base md:text-lg mb-3 font-medium" style={{ color: '#C9A84C' }}>
+            <p className="text-base md:text-lg mb-3 font-medium text-serene">
               Médico Radiólogo · Imagenología
             </p>
 
-            <p
-              className="text-sm md:text-base mb-8 max-w-md leading-relaxed"
-              style={{ color: 'rgba(255,255,255,0.72)' }}
-            >
+            <p className="text-sm md:text-base mb-8 max-w-md leading-relaxed text-text-secondary">
               Diagnósticos confiables y precisos con tecnología de vanguardia en Cuenca, Ecuador.
             </p>
 
@@ -66,8 +61,7 @@ export default function Hero() {
               href="https://linktr.ee/drffaican"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold transition-opacity hover:opacity-90"
-              style={{ backgroundColor: '#C9A84C', color: '#0D2137' }}
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold transition-all hover:brightness-110 bg-gold text-text-primary"
             >
               Agendar Cita
               <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
@@ -78,8 +72,8 @@ export default function Hero() {
             <div
               className="relative w-full h-full rounded-2xl overflow-hidden group"
               style={{
-                border: '1px solid rgba(201,168,76,0.35)',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.45)',
+                border: '1px solid hsl(var(--gold) / 0.35)',
+                boxShadow: '0 20px 60px rgba(44,95,138,0.25)',
               }}
             >
               <img
@@ -98,19 +92,18 @@ export default function Hero() {
       </div>
 
       {/* Stats bar */}
-      <div style={{ backgroundColor: '#0D2137', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+      <div className="bg-serene" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-8">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map((stat, i) => (
               <div key={i} className="flex flex-col items-center text-center py-4 relative">
                 {i < stats.length - 1 && (
                   <div
-                    className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px hidden md:block"
-                    style={{ backgroundColor: '#C9A84C', opacity: 0.45 }}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 h-10 w-px hidden md:block bg-gold/45"
                   />
                 )}
                 <span className="font-serif text-3xl font-bold text-white mb-1">{stat.value}</span>
-                <span className="text-xs tracking-wide uppercase" style={{ color: 'rgba(255,255,255,0.55)' }}>
+                <span className="text-xs tracking-wide uppercase text-white/55">
                   {stat.label}
                 </span>
               </div>
@@ -120,37 +113,22 @@ export default function Hero() {
       </div>
 
       {/* Quick access cards */}
-      <div style={{ backgroundColor: '#0D2137', borderTop: '1px solid rgba(255,255,255,0.06)', paddingBottom: '3.5rem' }}>
+      <div className="bg-ice py-14">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {quickCards.map((card, i) => (
               <Link
                 key={i}
                 to={card.to}
-                className="group flex flex-col p-6 rounded-xl border transition-all duration-300 cursor-pointer"
-                style={{
-                  borderColor: 'rgba(255,255,255,0.1)',
-                  backgroundColor: 'rgba(255,255,255,0.04)',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.backgroundColor = '#1A4A6B';
-                  el.style.borderColor = 'rgba(201,168,76,0.4)';
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.backgroundColor = 'rgba(255,255,255,0.04)';
-                  el.style.borderColor = 'rgba(255,255,255,0.1)';
-                }}
+                className="group flex flex-col p-6 rounded-xl border border-pastel/30 bg-white transition-all duration-300 hover:bg-[#D6E8F5] hover:border-pastel/60 hover:shadow-md"
               >
                 <card.icon
-                  className="w-6 h-6 mb-4"
-                  style={{ color: '#C9A84C' }}
+                  className="w-6 h-6 mb-4 text-pastel"
                   strokeWidth={1.5}
                 />
-                <h3 className="font-serif font-semibold text-white text-lg mb-1">{card.title}</h3>
-                <p className="text-sm mb-5 flex-1" style={{ color: '#5A6B7A' }}>{card.desc}</p>
-                <div className="flex items-center gap-1 text-sm font-medium" style={{ color: '#C9A84C' }}>
+                <h3 className="font-serif font-semibold text-text-primary text-lg mb-1">{card.title}</h3>
+                <p className="text-sm mb-5 flex-1 text-text-secondary">{card.desc}</p>
+                <div className="flex items-center gap-1 text-sm font-medium text-gold">
                   Ver más
                   <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
                 </div>
