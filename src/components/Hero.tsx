@@ -57,15 +57,13 @@ export default function Hero() {
               Diagnósticos confiables y precisos con tecnología de vanguardia en Cuenca, Ecuador.
             </p>
 
-            <a
-              href="https://linktr.ee/drffaican"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/agendar"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full font-semibold transition-all hover:brightness-110 bg-gold text-text-primary"
             >
               Agendar Cita
               <ArrowRight className="w-4 h-4" strokeWidth={1.5} />
-            </a>
+            </Link>
           </div>
 
           <div className="relative w-full aspect-[3/4] max-w-sm mx-auto lg:ml-auto">
