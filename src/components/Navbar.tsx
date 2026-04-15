@@ -65,14 +65,15 @@ export default function Navbar() {
           >
             Contáctame
           </Link>
-          <a
-            href="https://linktr.ee/drffaican"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-5 py-2 rounded-full font-semibold text-sm bg-gold text-text-primary transition-all hover:brightness-110"
+          <Link
+            to="/agendar"
+            className={cn(
+              'px-5 py-2 rounded-full font-semibold text-sm transition-all hover:brightness-110 bg-gold text-text-primary',
+              location.pathname === '/agendar' && 'ring-2 ring-white/30'
+            )}
           >
             Agendar Cita
-          </a>
+          </Link>
         </div>
 
         <button onClick={() => setOpen(!open)} className="md:hidden text-white">
@@ -94,14 +95,12 @@ export default function Navbar() {
           <Link to="/contacto" className="text-sm font-semibold text-gold py-2">
             Contáctame
           </Link>
-          <a
-            href="https://linktr.ee/drffaican"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/agendar"
             className="text-center px-5 py-2.5 rounded-full font-semibold text-sm bg-gold text-text-primary"
           >
             Agendar Cita
-          </a>
+          </Link>
         </div>
       )}
     </nav>
