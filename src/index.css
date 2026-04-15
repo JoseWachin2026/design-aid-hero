@@ -120,7 +120,8 @@
   }
 
   .service-card-img img {
-    @apply w-full h-full object-cover transition-transform duration-[400ms];
+    @apply w-full h-full object-cover transition-transform;
+    transition-duration: 400ms;
   }
 
   .service-card-img:hover img {
