@@ -14,9 +14,9 @@ function ActionButton({ href, label, icon }: { href: string; label: string; icon
       href={href}
       target={href.startsWith('tel:') ? undefined : '_blank'}
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium border border-pastel/40 bg-white text-text-primary hover:border-gold hover:bg-gold/5 hover:text-gold transition-all duration-200"
+      className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full text-base font-semibold border border-pastel/40 bg-white text-text-primary hover:border-gold hover:bg-gold/5 hover:text-gold transition-all duration-200"
     >
-      <Icon className="w-4 h-4" strokeWidth={1.5} />
+      <Icon className="w-5 h-5" strokeWidth={1.75} />
       {label}
     </a>
   );
@@ -44,18 +44,18 @@ export default function AgendarCita() {
       {/* Cards */}
       <div className="bg-warm-white py-16">
         <div className="section-container">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
 
             {/* CARD 1 — IDI */}
             <div
               className="rounded-xl overflow-hidden bg-white border border-pastel/20 hover:border-gold hover:shadow-lg transition-all duration-300 group flex flex-col"
               style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
             >
-              <div className="service-card-img aspect-[16/10] overflow-hidden bg-white flex items-center justify-center">
+              <div className="service-card-img aspect-[16/8] overflow-hidden bg-white flex items-center justify-center">
                 <img
                   src={idiImg}
                   alt="IDI - Instituto de Diagnóstico por Imagen"
-                  className="w-full h-full object-contain p-6 transition-transform duration-[400ms] group-hover:scale-105"
+                  className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -79,11 +79,11 @@ export default function AgendarCita() {
               className="rounded-xl overflow-hidden bg-white border border-pastel/20 hover:border-gold hover:shadow-lg transition-all duration-300 group flex flex-col"
               style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
             >
-              <div className="service-card-img aspect-[16/10] overflow-hidden bg-serene flex items-center justify-center">
+              <div className="service-card-img aspect-[16/8] overflow-hidden bg-serene flex items-center justify-center">
                 <img
                   src={humanitarioImg}
                   alt="Hospital Humanitario"
-                  className="w-full h-full object-contain p-6 transition-transform duration-[400ms] group-hover:scale-105"
+                  className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
@@ -108,12 +108,12 @@ export default function AgendarCita() {
               style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
             >
               {/* Split image */}
-              <div className="grid grid-cols-2 aspect-[16/6] overflow-hidden">
+              <div className="grid grid-cols-2 aspect-[16/5] overflow-hidden">
                 <div className="service-card-img overflow-hidden bg-white flex items-center justify-center border-r border-pastel/20">
                   <img
                     src={santaAnaImg}
                     alt="Clínica Santa Ana"
-                    className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
+                    className="w-full h-full object-contain p-3 transition-transform duration-[400ms] group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
@@ -121,7 +121,7 @@ export default function AgendarCita() {
                   <img
                     src={diradImg}
                     alt="Diagnóstico Radiológico DIRAD"
-                    className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
+                    className="w-full h-full object-contain p-3 transition-transform duration-[400ms] group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
