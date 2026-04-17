@@ -1,7 +1,6 @@
 import { ArrowRight, User, Stethoscope, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import hover1 from '@/assets/hover-1.png';
-import hover2 from '@/assets/hover-2.png';
+import heroDoctor from '@/assets/hero-doctor.png';
 
 const stats = [
   { value: '20+', label: 'años de experiencia' },
@@ -68,21 +67,16 @@ export default function Hero() {
 
           <div className="relative w-full aspect-[3/4] max-w-sm mx-auto lg:ml-auto">
             <div
-              className="relative w-full h-full rounded-2xl overflow-hidden group"
+              className="relative w-full h-full rounded-2xl overflow-hidden"
               style={{
                 border: '1px solid hsl(var(--gold) / 0.35)',
                 boxShadow: '0 20px 60px rgba(44,95,138,0.25)',
               }}
             >
               <img
-                src={hover1}
+                src={heroDoctor}
                 alt="Dr. Francisco Faicán"
-                className="absolute inset-0 w-full h-full object-cover object-[center_15%] transition-opacity duration-700 group-hover:opacity-0"
-              />
-              <img
-                src={hover2}
-                alt="Dr. Francisco Faicán — Conferencia"
-                className="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-700 group-hover:opacity-100"
+                className="absolute inset-0 w-full h-full object-cover object-[center_15%]"
               />
             </div>
           </div>

@@ -1,71 +1,28 @@
-import { useState } from 'react';
 import Navbar from '@/components/Navbar';
-import { MapPin, ExternalLink, ScanLine, MonitorSmartphone, Syringe, ChevronDown } from 'lucide-react';
-import idiCentro from '@/assets/idi-centro-2.jpg';
+import { MessageCircle, Phone, MapPin } from 'lucide-react';
+import idiImg from '@/assets/agendar-idi.png';
+import humanitarioImg from '@/assets/agendar-humanitario.png';
+import santaAnaImg from '@/assets/agendar-santa-ana.jpg';
+import diradImg from '@/assets/agendar-dirad.jpg';
 
-const categories = [
-  {
-    title: 'Diagnóstico por Imágenes e Intervencionismo',
-    icon: ScanLine,
-    centers: [
-      {
-        name: 'Instituto de Diagnóstico por Imagen (IDI)',
-        address: 'Inés Salcedo 1-99 entre Agustín Cueva y Federico Proaño.',
-        city: 'Cuenca, Ecuador',
-        image: idiCentro,
-        btnLabel: 'Agendar con IDI',
-        btnLink: 'https://www.idicuenca.com/contactanos',
-        mapLink: 'https://maps.app.goo.gl/FUDW5PsfV6YKwNaB9',
-        mapEmbed:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d178!2d-79.0092703!3d-2.9026829!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd197715d6cba3:0xa6b92a471ca96e2e!2sIDI+-+Instituto+De+Diagn%C3%B3stico+Por+Imagen!5e0!3m2!1ses!2sec',
-      },
-    ],
-  },
-  {
-    title: 'Diagnóstico por Imágenes',
-    icon: MonitorSmartphone,
-    centers: [
-      {
-        name: 'Hospital Humanitario Imagenología',
-        btnLabel: 'Agendar con Hospital Humanitario',
-        btnLink: 'https://www.hospitalhumanitario.org/centro-de-imagenes/',
-        mapLink: 'https://maps.app.goo.gl/gLeiKR83DfmPUdTB9',
-        mapEmbed:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985!2d-79.0100!3d-2.9100!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd18b0a0b0c0d0%3A0x1a2b3c4d5e6f7080!2sHospital+Humanitario!5e0!3m2!1ses!2sec',
-      },
-    ],
-  },
-  {
-    title: 'Intervencionismo',
-    icon: Syringe,
-    centers: [
-      {
-        name: 'Diagnóstico Radiológico',
-        btnLabel: 'Agendar con Diagnóstico Radiológico',
-        btnLink: 'https://www.diagnostico-radiologico.com/diagnosticoradiologico',
-        mapLink: 'https://maps.app.goo.gl/8U6G7btrqbu1d2kDA',
-        mapEmbed:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985!2d-79.0200!3d-2.9200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd1900a0b0c0d0%3A0x2a3b4c5d6e7f8090!2sDiagn%C3%B3stico+Radiol%C3%B3gico!5e0!3m2!1ses!2sec',
-      },
-      {
-        name: 'Clínica Santa Ana Intervencionismo',
-        btnLabel: 'Agendar con Clínica Santa Ana',
-        btnLink: 'https://clinicasantaana.com.ec/radiodiagnostico/',
-        mapLink: 'https://maps.app.goo.gl/iiQWQiD56RRYuQkC6',
-        mapEmbed:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985!2d-79.0050!3d-2.8970!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91cd183e9f8b6bcb%3A0x3e3d2e4f2a1b0c5d!2sCl%C3%ADnica+Santa+Ana!5e0!3m2!1ses!2sec',
-      },
-    ],
-  },
-];
+type BtnIcon = 'whatsapp' | 'phone' | 'maps';
+
+function ActionButton({ href, label, icon }: { href: string; label: string; icon: BtnIcon }) {
+  const Icon = icon === 'maps' ? MapPin : icon === 'phone' ? Phone : MessageCircle;
+  return (
+    <a
+      href={href}
+      target={href.startsWith('tel:') ? undefined : '_blank'}
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium border border-pastel/40 bg-white text-text-primary hover:border-gold hover:bg-gold/5 hover:text-gold transition-all duration-200"
+    >
+      <Icon className="w-4 h-4" strokeWidth={1.5} />
+      {label}
+    </a>
+  );
+}
 
 export default function AgendarCita() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  const toggle = (idx: number) => {
-    setOpenIndex(prev => (prev === idx ? null : idx));
-  };
-
   return (
     <main className="min-h-screen bg-ice">
       <Navbar />
@@ -84,125 +41,124 @@ export default function AgendarCita() {
         </div>
       </div>
 
-      {/* Category Buttons + Accordion Content */}
+      {/* Cards */}
       <div className="bg-warm-white py-16">
         <div className="section-container">
-          {/* Button Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
-            {categories.map((cat, idx) => {
-              const Icon = cat.icon;
-              const isOpen = openIndex === idx;
-              return (
-                <button
-                  key={cat.title}
-                  onClick={() => toggle(idx)}
-                  className={`group relative flex flex-col items-center gap-4 p-8 rounded-2xl border-2 transition-all duration-300 cursor-pointer text-center
-                    ${isOpen
-                      ? 'border-gold bg-serene shadow-lg shadow-serene/20'
-                      : 'border-pastel/30 bg-white hover:border-pastel hover:shadow-md hover:scale-[1.02]'
-                    }`}
-                >
-                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-colors duration-300
-                    ${isOpen ? 'bg-gold/20' : 'bg-ice'}`}>
-                    <Icon
-                      className={`w-7 h-7 transition-colors duration-300 ${isOpen ? 'text-gold' : 'text-pastel'}`}
-                      strokeWidth={1.5}
-                    />
-                  </div>
-                  <h2 className={`font-serif text-lg font-bold leading-snug transition-colors duration-300
-                    ${isOpen ? 'text-white' : 'text-text-primary'}`}>
-                    {cat.title}
-                  </h2>
-                  <ChevronDown
-                    className={`w-5 h-5 transition-all duration-300 ${isOpen ? 'text-gold rotate-180' : 'text-text-secondary'}`}
-                    strokeWidth={1.5}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+            {/* CARD 1 — IDI */}
+            <div
+              className="rounded-xl overflow-hidden bg-white border border-pastel/20 hover:border-gold hover:shadow-lg transition-all duration-300 group flex flex-col"
+              style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
+            >
+              <div className="service-card-img aspect-[16/10] overflow-hidden bg-white flex items-center justify-center">
+                <img
+                  src={idiImg}
+                  alt="IDI - Instituto de Diagnóstico por Imagen"
+                  className="w-full h-full object-contain p-6 transition-transform duration-[400ms] group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-serif text-lg font-bold text-text-primary mb-1">
+                  Agendar para Diagnóstico por Imágenes e Intervencionismo
+                </h3>
+                <p className="text-sm text-text-secondary mb-5">
+                  Agendamiento IDI (Instituto de Diagnóstico por Imagen)
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  <ActionButton href="https://wa.me/593999957686" label="Agendar - Teléfono" icon="whatsapp" />
+                  <ActionButton href="https://wa.me/593995103478" label="Agendar - Teléfono 2" icon="whatsapp" />
+                  <ActionButton href="https://maps.app.goo.gl/b9grxFeoRDdoUeN76" label="Ubicación" icon="maps" />
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 2 — Hospital Humanitario */}
+            <div
+              className="rounded-xl overflow-hidden bg-white border border-pastel/20 hover:border-gold hover:shadow-lg transition-all duration-300 group flex flex-col"
+              style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
+            >
+              <div className="service-card-img aspect-[16/10] overflow-hidden bg-serene flex items-center justify-center">
+                <img
+                  src={humanitarioImg}
+                  alt="Hospital Humanitario"
+                  className="w-full h-full object-contain p-6 transition-transform duration-[400ms] group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-serif text-lg font-bold text-text-primary mb-1">
+                  Agendamiento para Diagnóstico por Imágenes
+                </h3>
+                <p className="text-sm text-text-secondary mb-5">
+                  Agendar con Hospital Humanitario
+                </p>
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  <ActionButton href="https://wa.me/593999611110" label="Agendar - Teléfono" icon="whatsapp" />
+                  <ActionButton href="tel:024001700" label="Call Center" icon="phone" />
+                  <ActionButton href="https://maps.app.goo.gl/fD5MaT4LV8w9ie7x7" label="Ubicación" icon="maps" />
+                </div>
+              </div>
+            </div>
+
+            {/* CARD 3 — Intervencionismo (full width on desktop) */}
+            <div
+              className="md:col-span-2 rounded-xl overflow-hidden bg-white border border-pastel/20 hover:border-gold hover:shadow-lg transition-all duration-300 group flex flex-col"
+              style={{ boxShadow: '0 4px 16px rgba(44,95,138,0.06)' }}
+            >
+              {/* Split image */}
+              <div className="grid grid-cols-2 aspect-[16/6] overflow-hidden">
+                <div className="service-card-img overflow-hidden bg-white flex items-center justify-center border-r border-pastel/20">
+                  <img
+                    src={santaAnaImg}
+                    alt="Clínica Santa Ana"
+                    className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
+                    loading="lazy"
                   />
-                </button>
-              );
-            })}
-          </div>
+                </div>
+                <div className="service-card-img overflow-hidden bg-white flex items-center justify-center">
+                  <img
+                    src={diradImg}
+                    alt="Diagnóstico Radiológico DIRAD"
+                    className="w-full h-full object-contain p-4 transition-transform duration-[400ms] group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
 
-          {/* Accordion Content */}
-          {categories.map((category, catIdx) => {
-            const isOpen = openIndex === catIdx;
-            return (
-              <div
-                key={category.title}
-                className="overflow-hidden transition-all duration-500 ease-in-out"
-                style={{
-                  maxHeight: isOpen ? '2000px' : '0',
-                  opacity: isOpen ? 1 : 0,
-                }}
-              >
-                <div className="pt-4 pb-8">
-                  <div className={`grid grid-cols-1 ${category.centers.length > 1 ? 'md:grid-cols-2' : 'max-w-3xl mx-auto'} gap-6`}>
-                    {category.centers.map((center) => (
-                      <div
-                        key={center.name}
-                        className="rounded-2xl overflow-hidden border border-pastel/20 bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
-                      >
-                        {'image' in center && center.image && (
-                          <div className="bg-serene p-6 pb-0">
-                            <div className="service-card-img aspect-[16/7] rounded-lg overflow-hidden">
-                              <img src={center.image} alt={center.name} className="w-full h-full object-cover" loading="lazy" />
-                            </div>
-                          </div>
-                        )}
+              <div className="p-6">
+                <h3 className="font-serif text-lg font-bold text-text-primary mb-5 text-center">
+                  Agendar para Intervencionismo
+                </h3>
 
-                        <div className="aspect-video min-h-[250px]">
-                          <iframe
-                            src={center.mapEmbed}
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0, display: 'block' }}
-                            allowFullScreen
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title={`Ubicación de ${center.name}`}
-                          />
-                        </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* Santa Ana */}
+                  <div className="flex flex-col items-center text-center sm:border-r sm:border-pastel/20 sm:pr-6">
+                    <h4 className="font-serif text-base font-semibold text-text-primary mb-3">
+                      Clínica Santa Ana
+                    </h4>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <ActionButton href="https://wa.me/593969843704" label="Agendar - Teléfono" icon="whatsapp" />
+                      <ActionButton href="https://maps.app.goo.gl/GdsJqNCqop1forss8" label="Ubicación" icon="maps" />
+                    </div>
+                  </div>
 
-                        <div className="p-6 bg-serene">
-                          <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase mb-3 text-gold">
-                            <MapPin className="w-4 h-4" strokeWidth={1.5} />
-                            Centro Médico
-                          </div>
-                          <h3 className="font-serif text-xl font-bold text-white mb-2">
-                            {center.name}
-                          </h3>
-                          {'address' in center && (
-                            <>
-                              <p className="text-sm mb-1 text-white/70">{(center as any).address}</p>
-                              <p className="text-sm mb-4 text-white/70">{(center as any).city}</p>
-                            </>
-                          )}
-                          <div className="flex flex-wrap gap-3 mt-4">
-                            <a
-                              href={center.btnLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm bg-gold text-text-primary hover:brightness-110 transition-all"
-                            >
-                              {center.btnLabel}
-                            </a>
-                            <a
-                              href={center.mapLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm border border-white/30 text-white hover:bg-white/10 transition-colors"
-                            >
-                              <ExternalLink className="w-4 h-4" strokeWidth={1.5} />
-                              Cómo llegar
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                  {/* DIRAD */}
+                  <div className="flex flex-col items-center text-center">
+                    <h4 className="font-serif text-base font-semibold text-text-primary mb-3">
+                      Diagnóstico Radiológico
+                    </h4>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <ActionButton href="https://wa.me/593998192609" label="Agendar - Teléfono" icon="whatsapp" />
+                      <ActionButton href="https://maps.app.goo.gl/4vFrbDXy8yawLE8Q6" label="Ubicación" icon="maps" />
+                    </div>
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+
+          </div>
         </div>
       </div>
 
